@@ -5,7 +5,43 @@
 
  Previous app exercises have introduced the idea that your fitness tracking app may allow users to track swimming workouts. Create a `SwimmingWorkout` struct below with properties for `distance`, `time`, and `stroke`. `distance` and `time` should be of type `Double` and will represent distance in meters and time in seconds, and `stroke` should be of type `String`.
  */
+struct SwimmingWorkout{
+    var distance: Double
+    var time: Double
+    var stroke: Stroke
+    
+    enum Stroke{
+        case freestyle, butterfly, backstroke, breaststroke
+    }
+    
+    static var freestyleWorkouts:[SwimmingWorkout] = []
+    static var butterflyWorkouts :[SwimmingWorkout] = []
+    static var backstrokeWorkouts :[SwimmingWorkout] = []
+    static var breaststrokeWorkouts :[SwimmingWorkout] = []
+    
+    
+    func save(){
+        switch self.stroke{
+            case .freestyle:
+            SwimmingWorkout.freestyleWorkouts.append(self)
+            
+            
+        case .backstroke:
+            SwimmingWorkout.backstrokeWorkouts.append(self)
 
+            
+        case .breaststroke:
+            SwimmingWorkout.breaststrokeWorkouts.append(self)
+            
+        case .butterfly:
+            SwimmingWorkout.butterflyWorkouts.append(self)
+
+            
+        }
+    }
+}
+
+var s = SwimmingWorkout(distance: 10.0, time: 11.30, stroke: .freestyle)
 
 //:  Allowing `stroke` to be of type `String` isn't very type-safe. Inside the `SwimmingWorkout` struct, create an enum called `Stroke` that has cases for `freestyle`, `butterfly`, `backstroke`, and `breaststroke`. Change the type of `stroke` from `String` to `Stroke`. Create two instances of `SwimmingWorkout` objects.
 
